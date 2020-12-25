@@ -1,5 +1,6 @@
 #include "Grammar_t.h"
 #include <iostream>
+#include <cstring>
 
 #define BUFFER_SIZE 1000
 
@@ -23,7 +24,14 @@ void Grammar_t::addRule(const std::string& rule) {
     char from = rule[0];
     std::string to = "";
     for (size_t i = 3; i < rule.size(); ++i) {
-        to += rule[i];
+        if (rule[i] == '|') {
+            addRule(Rule_t(from, to));
+            to = "";
+        } else {
+            if (rule[i] != EPSILON) {
+                to += rule[i];
+            }
+        }
     }
     addRule(Rule_t(from ,to));
 }

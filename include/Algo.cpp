@@ -24,8 +24,6 @@ bool Algo::predict(const std::string& word) {
         0
     );
 
-    std::cout << situations[word.size()].size() << std::endl;
-
     for (const auto& st : situations[word.size()]) {
         if (finalSituation == st) {
             return true;

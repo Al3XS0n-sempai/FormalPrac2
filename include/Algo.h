@@ -10,6 +10,8 @@ struct Situation_t;
 
 class Algo {
 public:
+    friend class Algo_Test;
+
     Algo() = default;
 
     Algo(const char* fileName);
@@ -24,7 +26,9 @@ public:
 
     void Complete(int id);
 
-private:
+    Grammar_t getGrammar() const { return _gram; }
+
+protected:
     void _init(const std::string& word);
 
     Situation_t _getFinalSituation() const;

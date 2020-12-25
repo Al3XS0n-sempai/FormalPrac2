@@ -22,13 +22,16 @@ public:
 
     std::vector<Rule_t> getRules(char sym);
 
-    static bool isTerminal(char sym) { return 'a' <= sym && sym <= 'z' || '1' == sym; }
+    static bool isTerminal(char sym) { 
+        return 'a' <= sym && sym <= 'z' || sym == '(' || sym == ')'; 
+    }
 
     static bool isNotTerminal(char sym) { return 'A' <= sym && sym <= 'Z'; }
 
     char startNotTerminal() const;
 
 private:
+    static const char EPSILON = '1';
     char _startNotTerminal;
     std::map<char, std::vector<Rule_t>> _rules;
 };
